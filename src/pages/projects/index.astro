@@ -1,0 +1,63 @@
+---
+// src/pages/projects/index.astro
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { type CollectionEntry } from 'astro:content';
+import '../../styles/global.css';
+
+const allProjects = await getCollection("projects");
+
+type Project = CollectionEntry<'projects'>;
+
+// Function to truncate a string
+function truncate(str: string, n: number){
+  return (str.length > n) ? str.slice(0, n-1) + '...' : str;
+}
+---
+
+<Layout>
+    <section class="w-full bg-white">
+        <div class="container mx-auto px-4 py-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">My projects</h2>
+            <div class="grid grid-cols-1 gap-8 max-w-6xl mx-auto">
+            {allProjects.map((project: Project) => (
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
+                    <div class="flex flex-col md:flex-row">
+                        <div class="w-full md:w-80 min-w-[10rem] h-48 md:h-auto">
+                            {project.data.image && (
+                            <img
+                                src={project.data.image}
+                                alt={project.data.title}
+                                class="w-full h-full object-cover"
+                            />
+                            )}
+                        </div>
+                        <div class="w-full md:w-auto p-6">
+                            <h3 class="font-semibold text-lg text-gray-900 mb-2">{project.data.title}</h3>
+                            <p class="text-gray-600 mb-6">{truncate(project.data.description, 100)}</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                {project.data.technologies?.slice(0, 3).map((tech) => (
+                                    <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm whitespace-nowrap">
+                                        {tech}
+                                    </span>
+                                ))}
+                                {project.data.technologies && project.data.technologies.length > 3 && (
+                                    <span class="px-3 py-1 bg-gray-200 text-gray-600 rounded-full text-sm">
+                                        +{project.data.technologies.length - 3}
+                                    </span>
+                                )}
+                            </div>
+                            <a
+                                href={`/projects/${project.slug}`}
+                                class="mt-4 inline-block text-blue-600 hover:text-blue-700 font-medium"
+                            >
+                                View Project →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            ))}
+            </div>
+        </div>
+    </section>
+</Layout>
