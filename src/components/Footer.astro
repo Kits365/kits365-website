@@ -1,0 +1,55 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-auto bg-gray-800 text-white font-sans">
+	<div class="container mx-auto px-4 py-8">
+		<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+			<div>
+				<p class="text-base font-semibold">Kits365</p>
+				<p class="mt-2 text-sm text-gray-300">Kits Microsoft 365 pour TPE/PME</p>
+			</div>
+
+			<div>
+				<p class="text-sm font-semibold">Contact</p>
+				<ul class="mt-2 space-y-2 text-sm">
+					<li>
+						<a href="mailto:contact@kits365.fr" class="text-gray-300 hover:text-blue-400 rounded">
+							contact@kits365.fr
+						</a>
+					</li>
+					<li>
+						<a
+							href="https://www.linkedin.com/company/141753953/"
+							target="_blank"
+							rel="noreferrer"
+							class="text-gray-300 hover:text-blue-400 rounded"
+						>
+							LinkedIn
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div>
+				<p class="text-sm font-semibold">Navigation</p>
+				<ul class="mt-2 space-y-2 text-sm">
+					<li>
+						<a href="/projects" class="text-gray-300 hover:text-blue-400 rounded">Nos kits</a>
+					</li>
+					<li>
+						<a href="/mentions-legales" class="text-gray-300 hover:text-blue-400 rounded">
+							Mentions légales
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="border-t border-white/10">
+		<div class="container mx-auto px-4 py-4">
+			<p class="text-xs text-gray-400">© {year} Kits365 — Tous droits réservés</p>
+		</div>
+	</div>
+</footer>
